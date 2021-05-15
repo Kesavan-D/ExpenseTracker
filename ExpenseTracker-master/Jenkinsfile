@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "gvanishri/expensetracker"
+        registry = "kesavdocker/kesav-bits"
         registryCredential = 'dockerID'
         dockerImage = ''
     }    
@@ -11,7 +11,7 @@ pipeline {
 
         stage('Clone GitHub repository') {
             steps {
-                git credentialsId: 'GIT_LOGIN_CREDENTIALS', url: 'https://github.com/gvanishri/ExpenseTracker.git'
+                git credentialsId: 'GIT_LOGIN_CREDENTIALS', url: 'https://github.com/Kesavan-D/ExpenseTracker'
             }
         }
 
