@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine3.9
 
-MAINTAINER gvanitha.shri@gmail.com
+MAINTAINER kesavan.durairajan@gmail.com
 
 USER root
 
