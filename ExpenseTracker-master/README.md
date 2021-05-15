@@ -63,7 +63,7 @@ Instructios will guide to setup working environment for development and testing 
     e.g github public repo link:
 
     ```
-    git clone https://github.com/gvanishri/ExpenseTracker.git 
+    git clone https://github.com/Kesavan-D/ExpenseTracker 
     ```
 
     use relavent commands, to commit and push to the repo
