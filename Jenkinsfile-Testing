@@ -1,7 +1,7 @@
 node {
     
     stage('Git Clone') {
-        git credentialsId: 'GIT_LOGIN_CREDENTIALS', url: 'https://github.com/gvanishri/ExpenseTracker.git'                
+        git credentialsId: 'GIT_LOGIN_CREDENTIALS', url: 'https://github.com/Kesavan-D/ExpenseTracker.git'                
     }
     
     stage('Compile') {
@@ -18,28 +18,28 @@ node {
 
     stage('Build Image') {
         //sh 'docker version'
-        sh 'docker build -t gvanishri/expensetracker:1.0.$BUILD_NUMBER .'
-        sh 'docker build -t gvanishri/expensetracker:latest .'
+        sh 'docker build -t kesavdocker/kesav-bits:1.0.$BUILD_NUMBER .'
+        sh 'docker build -t kesavdocker/kesav-bits:latest .'
     }
     
     withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-	    sh 'docker login -u gvanishri -p $PASSWORD'	
+	    sh 'docker login -u kesavdocker -p $PASSWORD'	
     }
     
     stage('Push Image to Docker Hub') {
-        sh 'docker push gvanishri/expensetracker:1.0.$BUILD_NUMBER'
-	    sh 'docker push gvanishri/expensetracker:latest'
+        sh 'docker push kesavdocker/kesav-bits:1.0.$BUILD_NUMBER'
+	    sh 'docker push kesavdocker/kesav-bits:latest'
     }
     
     stage('Remove unused docker images') {
-	    sh 'docker rmi -f gvanishri/expensetracker:1.0.$BUILD_NUMBER'
-        sh 'docker rmi -f gvanishri/expensetracker:latest'
+	    sh 'docker rmi -f kesavdocker/kesav-bits:1.0.$BUILD_NUMBER'
+        sh 'docker rmi -f kesavdocker/kesav-bits:latest'
     }
 
     stage('Using SSH connect to kube8master') {
 	    def remote = [:]
-        remote.name = 'kube8master'
-        remote.host = '18.236.223.16'
+        remote.name = 'kubemaster'
+        remote.host = '192.168.0.148'
         remote.user = 'root'
         remote.password = 'root'
         remote.allowAnyHosts = true
